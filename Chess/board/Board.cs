@@ -24,5 +24,10 @@ namespace board
         {
             return _pieces[i, j];
         }
+        public void SetPiecePosition(Piece p, Position pos)
+        {
+            _pieces[pos.Row, pos.Col] = p;
+            p.position = pos;
+        }
     }
 }
