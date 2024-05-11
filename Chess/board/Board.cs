@@ -30,6 +30,10 @@ namespace board
         }
         public void SetPiecePosition(Piece p, Position pos)
         {
+            if (PieceExist(pos))
+            {
+                throw new BoardException("already exist an piece on this position");
+            }
             _pieces[pos.Row, pos.Col] = p;
             p.position = pos;
         }
@@ -49,7 +53,7 @@ namespace board
         {
             if (!ValidPosition(p))
             {
-                throw new BoardException("Invalid position")
+                throw new BoardException("Invalid position");
             }
         }
     }
