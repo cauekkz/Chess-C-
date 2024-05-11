@@ -13,12 +13,14 @@ namespace Chess
         {
             for (int i = 0; i < board.Rows; i++)
             {
+                Console.Write(8 - i + " ");
                 for (int j = 0; j < board.Cols; j++)
                 {
                     if (board.GetPiece(i,j) != null)
                     {
 
-                        Console.Write(board.GetPiece(i,j) + " ");
+                        PrintPiece(board.GetPiece(i,j));
+                        Console.Write(" ");
                     }
                     else
                     {
@@ -27,6 +29,20 @@ namespace Chess
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("  a b c d e f g h");
         }
+        public static void PrintPiece(Piece piece)
+        {
+            if (piece.color == Color.White)
+            {
+                Console.Write(piece);
+            }else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(piece);
+                Console.ResetColor();
+            }
+        }
+
     }
 }

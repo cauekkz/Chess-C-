@@ -8,11 +8,8 @@ namespace board
 {
     enum Color
     {
-        Branca,
-        Preta,
-        Amarela,
-        Verde,
-        Laranja,
-        Vermelha
+        White,
+        Black
+        
     }
 }
