@@ -1,4 +1,4 @@
-#Chess C# 
+#Chess C-sharp
 
 The game's interface is simple and straightforward. The console displays the current position of the pieces using standard chess alphanumeric notation, where letters represent columns and numbers represent rows. For example, "e4" represents the square in the middle of the board.
 
