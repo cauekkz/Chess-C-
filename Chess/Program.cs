@@ -2,11 +2,21 @@
 using chess;
 using Chess;
 
+ChessMatch match = new ChessMatch();
+Screen.PrintBoard(match.board);
+while (!match.Finished)
+{
+    Console.Clear();
+    Screen.PrintBoard(match.board);
+    Console.WriteLine();
+    Console.Write("Origin: ");
+    Position origin = Screen.ReadPosition().ToPosition();
+    Console.Write("Destination: ");
+    Position destination = Screen.ReadPosition().ToPosition();
 
-Board b = new Board(8, 8);
-b.SetPiecePosition(new Tower(Color.Black, b), new Position(0, 0)); 
-b.SetPiecePosition(new King(Color.White, b), new Position(0, 1));
-Screen.PrintBoard(b);
+    match.MoveExec(origin, destination);    
 
-ChessPosition cPos = new ChessPosition('a', 1);
-Console.WriteLine(cPos.ToPosition());
+
+}
+
+

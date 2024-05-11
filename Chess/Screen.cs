@@ -1,4 +1,5 @@
 ﻿using board;
+using chess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,13 @@ namespace Chess
                 Console.Write(piece);
                 Console.ResetColor();
             }
+        }
+
+        public static ChessPosition ReadPosition()
+        {
+            string s = Console.ReadLine();
+            return new ChessPosition(s[0], int.Parse(s[1]+""));
+
         }
 
     }

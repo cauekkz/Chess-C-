@@ -22,5 +22,10 @@ namespace board
             AmtMovements = 0;
         }
 
+        public void IncreaseMovement()
+        {
+            AmtMovements++;
+        }
+
     }
 }

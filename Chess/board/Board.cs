@@ -37,6 +37,17 @@ namespace board
             _pieces[pos.Row, pos.Col] = p;
             p.position = pos;
         }
+        public Piece RemovePiece(Position p)
+        {
+            if (GetPiece(p) == null)
+                return null;
+            Piece aux = GetPiece(p);
+            aux.position = null;
+            _pieces[p.Row, p.Col] = null;
+            return aux;
+
+
+        }
         public bool PieceExist(Position p)
         {
             PositionValid(p);
