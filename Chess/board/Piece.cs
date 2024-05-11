@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace board
 {
-    internal class Piece
+     abstract internal class Piece
     {
         public Position position {  get; set; }
         public Color color { get; protected set; }
@@ -21,7 +21,7 @@ namespace board
             this.board = board;
             AmtMovements = 0;
         }
-
+        public abstract bool[,] PossibleMovements();
         public void IncreaseMovement()
         {
             AmtMovements++;
