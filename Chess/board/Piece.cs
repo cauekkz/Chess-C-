@@ -25,9 +25,9 @@ namespace board
         public bool ExistpossibleMoves()
         {
             bool[,] mtx = PossibleMovements();
-            for(int i = 0; i< board.Rows;  i++)
+            for(int i = 0; i < board.Rows;  i++)
             {
-                for (int j = 0; i < board.Cols; j++)
+                for (int j = 0; j < board.Cols; j++)
                 {
                     if (mtx[i, j])
                     {
@@ -45,6 +45,10 @@ namespace board
         public void IncreaseMovement()
         {
             AmtMovements++;
+        }
+        public void DecrementMovement()
+        {
+            AmtMovements--  ;
         }
 
     }

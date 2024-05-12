@@ -19,6 +19,9 @@ namespace Chess
             Console.WriteLine();
             Console.WriteLine("Turn: " + m.turn);
             Console.WriteLine("Waiting for move: " + m.player);
+            if (m.check)
+                Console.WriteLine("CHECK!!");
+                
             Console.WriteLine();
 
 
