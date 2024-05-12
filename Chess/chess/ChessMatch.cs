@@ -10,16 +10,16 @@ namespace chess
     internal class ChessMatch
     {
         public Board board {  get; private set; }
-        private int _turn;
-        private Color _player;
+        public int turn { get; private set; }
+        public Color player { get; private set; }
         public bool Finished { get; private set; }
 
 
         public ChessMatch()
         {
             board = new Board(8,8);
-            _turn = 0;
-            _player = Color.White;
+            turn = 0;
+            player = Color.White;
             InitializePieces();
             Finished = false;
         }
@@ -33,10 +33,48 @@ namespace chess
             Piece  cptP = board.RemovePiece(destination);
             board.SetPiecePosition(p,destination);
             
-         
 
+        }
+        public void MakePlay(Position origin, Position destination)
+        {
+            MoveExec(origin, destination);
+            turn++;
+            ChangePlayer();
 
+        }
+        private void ChangePlayer()
+        {
+            if (player == Color.White)
+            {
+                player = Color.Black;
+            }
+            else
+            {
+                player = Color.White;
+            }
+        }
+        public void ValidOriginPosition(Position p)
+        {
+            if (board.GetPiece(p) == null)
+            {
+                throw new BoardException("Not exist piece on this origin");
+            }
+            if(player != board.GetPiece(p).color)
+            {
+                throw new BoardException("it is not your piece");
+            }
+            if (!board.GetPiece(p).ExistpossibleMoves())
+            {
+                throw new BoardException("no movements possible");
 
+            }
+        }
+        public void ValidDestinationPosition(Position origin,Position destination)
+        {
+            if (!board.GetPiece(origin).CanMoveToPosition(destination)) 
+            {
+                throw new BoardException("Destination Position Invalid");
+            }
         }
         private void InitializePieces()
         {
