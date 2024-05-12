@@ -63,6 +63,8 @@ namespace chess
                 }
                 pos.Col--;
             }
+            return mtx;
+
 
 
 

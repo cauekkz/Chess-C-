@@ -41,6 +41,14 @@ namespace chess
         private void InitializePieces()
         {
             board.SetPiecePosition(new Tower(Color.Black, board), new ChessPosition('c',1).ToPosition());
+
+            board.SetPiecePosition(new King(Color.Black, board), new ChessPosition('e', 2).ToPosition());
+            board.SetPiecePosition(new King(Color.Black, board), new ChessPosition('d', 2).ToPosition());
+
+            board.SetPiecePosition(new Tower(Color.White, board), new ChessPosition('a', 1).ToPosition());
+            board.SetPiecePosition(new Tower(Color.Black, board), new ChessPosition('c', 7).ToPosition());
+
+
         }
     }
 }

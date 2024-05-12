@@ -10,7 +10,13 @@ while (!match.Finished)
     Screen.PrintBoard(match.board);
     Console.WriteLine();
     Console.Write("Origin: ");
+    
     Position origin = Screen.ReadPosition().ToPosition();
+    Console.Clear();
+    bool[,] possiblePositions = match.board.GetPiece(origin).PossibleMovements();
+    Screen.PrintBoard(match.board,possiblePositions);
+
+
     Console.Write("Destination: ");
     Position destination = Screen.ReadPosition().ToPosition();
 

@@ -19,13 +19,13 @@ namespace chess
             Position pos = new Position(0,0);
 
             
-            pos.SetValues(position.Row + 1, position.Col);
+            pos.SetValues(position.Row - 1, position.Col);
             if(board.ValidPosition(pos) && CanMove(pos))
             {
                 mtx[pos.Row, pos.Col] = true;
             }
             
-            pos.SetValues(position.Row -1, position.Col + 1);
+            pos.SetValues(position.Row - 1, position.Col + 1);
             if (board.ValidPosition(pos) && CanMove(pos))
             {
                 mtx[pos.Row, pos.Col] = true;
@@ -72,6 +72,7 @@ namespace chess
             {
                 mtx[pos.Row, pos.Col] = true;
             }
+            return mtx;
 
         }
         private bool CanMove(Position pos)
