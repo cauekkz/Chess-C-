@@ -16,7 +16,7 @@ namespace chess
         public int turn { get; private set; }
         public Color player { get; private set; }
         public bool Finished { get; private set; }
-        
+
         public bool check { get; private set; }
 
         private HashSet<Piece> pieces;
@@ -28,7 +28,7 @@ namespace chess
         public ChessMatch()
         {
 
-            board = new Board(8,8);
+            board = new Board(8, 8);
             turn = 0;
             player = Color.White;
             pieces = new HashSet<Piece>();
@@ -45,15 +45,15 @@ namespace chess
             Piece p = board.RemovePiece(origin);
 
             p.IncreaseMovement();
-            Piece  cptP = board.RemovePiece(destination);
-            board.SetPiecePosition(p,destination);
+            Piece cptP = board.RemovePiece(destination);
+            board.SetPiecePosition(p, destination);
             if (cptP != null)
             {
                 captured.Add(cptP);
             }
             return cptP;
 
-            
+
 
         }
         public void MakePlay(Position origin, Position destination)
@@ -72,10 +72,18 @@ namespace chess
             }
             else
             {
-                check = false;  
+                check = false;
             }
+            if (CheckMate(Adversary(player)))
+            {
+                Finished = true;
+            }
+            else
+            {
                 turn++;
-            ChangePlayer();
+                ChangePlayer();
+            }
+
 
         }
         public void UnmakePlay(Position origin, Position destination, Piece cptP)
@@ -84,10 +92,10 @@ namespace chess
             p.DecrementMovement();
             if (cptP != null)
             {
-                board.SetPiecePosition(cptP,destination);
+                board.SetPiecePosition(cptP, destination);
                 captured.Remove(cptP);
             }
-           board.SetPiecePosition(p,origin);
+            board.SetPiecePosition(p, origin);
         }
         private void ChangePlayer()
         {
@@ -123,15 +131,45 @@ namespace chess
                 bool[,] mtx = x.PossibleMovements();
                 if (mtx[k.position.Row, k.position.Col])
                     return true;
-                
+
             }
             return false;
+        }
+        public bool CheckMate(Color c)
+        {
+            if (!Ischeck(c))
+                return false;
+            foreach (Piece x in PiecesInGame(c))
+            {
+                bool[,] mtx = x.PossibleMovements();
+                for (int i = 0; i < board.Rows; i++)
+                {
+                    for (int j = 0; j < board.Cols; j++)
+                    {
+                        if (mtx[i, j])
+                        {
+                            Position ori = x.position;
+                            Position des = new Position(i, j);
+                            Piece cptP = MoveExec(ori, des);
+                            bool TestCheck = Ischeck(c);
+                            UnmakePlay(ori, des, cptP);
+                            if (!TestCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+            }
+            return true;
+
         }
         private Piece GetKing(Color c)
         {
             foreach (Piece x in PiecesInGame(c))
             {
-                if ( x is King)
+                if (x is King)
                 {
                     return x;
                 }
@@ -143,7 +181,7 @@ namespace chess
             HashSet<Piece> ax = new HashSet<Piece>();
             foreach (Piece x in captured)
             {
-                if(x.color == color)
+                if (x.color == color)
                 {
                     ax.Add(x);
                 }
@@ -171,7 +209,7 @@ namespace chess
             {
                 throw new BoardException("Not exist piece on this origin");
             }
-            if(player != board.GetPiece(p).color)
+            if (player != board.GetPiece(p).color)
             {
                 throw new BoardException("it is not your piece");
             }
@@ -181,9 +219,9 @@ namespace chess
 
             }
         }
-        public void ValidDestinationPosition(Position origin,Position destination)
+        public void ValidDestinationPosition(Position origin, Position destination)
         {
-            if (!board.GetPiece(origin).CanMoveToPosition(destination)) 
+            if (!board.GetPiece(origin).CanMoveToPosition(destination))
             {
                 throw new BoardException("Destination Position Invalid");
             }
@@ -195,14 +233,14 @@ namespace chess
         }
         private void InitializePieces()
         {
-            PlaceNewPiece('c', 1, new Tower(Color.Black, board));
-            PlaceNewPiece('a', 1, new Tower(Color.Black, board));
-            PlaceNewPiece('f', 3, new King(Color.Black, board));
-            PlaceNewPiece('f', 7, new King(Color.White, board));
+            PlaceNewPiece('c', 1, new Tower(Color.White, board));
+            PlaceNewPiece('a', 8, new King(Color.Black, board));
+            PlaceNewPiece('d', 1, new King(Color.White, board));
+            PlaceNewPiece('h', 7, new Tower(Color.White, board));
 
 
 
-            PlaceNewPiece('f', 1, new Tower(Color.White, board));
+            PlaceNewPiece('b', 8, new Tower(Color.Black, board));
 
 
 

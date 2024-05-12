@@ -32,5 +32,7 @@ while (!match.Finished)
     }
 
 }
+Console.Clear();
+Screen.PrintMatch(match);
 
 
