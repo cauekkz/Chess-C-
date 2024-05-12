@@ -9,11 +9,7 @@ while (!match.Finished)
     try
     {
         Console.Clear();
-        Screen.PrintBoard(match.board);
-        Console.WriteLine();
-        Console.WriteLine("Turn: " + match.turn);
-        Console.WriteLine("Waiting for move: " + match.player);
-        Console.WriteLine();
+        Screen.PrintMatch(match);
         Console.Write("Origin: ");
         Position origin = Screen.ReadPosition().ToPosition();
         match.ValidOriginPosition(origin);

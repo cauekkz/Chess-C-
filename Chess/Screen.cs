@@ -4,12 +4,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Chess
 {
     internal class Screen
     {
+        public static void PrintMatch(ChessMatch m)
+        {
+            PrintBoard(m.board);
+            Console.WriteLine();
+            PrintCapturedPieces(m);
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + m.turn);
+            Console.WriteLine("Waiting for move: " + m.player);
+            Console.WriteLine();
+
+
+        }
+        public static void PrintCapturedPieces(ChessMatch m)
+        {
+            Console.WriteLine("Captured Pieces:");
+            Console.Write("White: ");
+            PrintSet(m.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Black: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintSet(m.CapturedPieces(Color.Black));
+            Console.ResetColor();
+        }
+        public static void PrintSet(HashSet<Piece> h)
+        {
+            Console.Write("[");
+            foreach( Piece x in h)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
         public static void PrintBoard(Board board)
         {
             for (int i = 0; i < board.Rows; i++)
