@@ -22,10 +22,9 @@ while (!match.Finished)
         Position destination = Screen.ReadPosition().ToPosition();
         match.ValidDestinationPosition(origin,destination);
 
-
         match.MakePlay(origin, destination);
-
-    }catch(BoardException e)
+        }
+    catch(BoardException e)
     {
         Console.WriteLine(e.Message);
         Console.ReadLine();

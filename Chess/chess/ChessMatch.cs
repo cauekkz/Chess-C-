@@ -233,14 +233,45 @@ namespace chess
         }
         private void InitializePieces()
         {
-            PlaceNewPiece('c', 1, new Tower(Color.White, board));
-            PlaceNewPiece('a', 8, new King(Color.Black, board));
-            PlaceNewPiece('d', 1, new King(Color.White, board));
-            PlaceNewPiece('h', 7, new Tower(Color.White, board));
+            PlaceNewPiece('a', 1, new Rook(Color.White, board));
+            PlaceNewPiece('b', 1, new Knight(Color.White, board));
+            PlaceNewPiece('c', 1, new Bishop(Color.White, board));
+            PlaceNewPiece('d', 1, new Queen(Color.White, board));
+            PlaceNewPiece('e', 1, new King(Color.White, board));
+            PlaceNewPiece('f', 1, new Bishop(Color.White, board));
+            PlaceNewPiece('g', 1, new Knight(Color.White, board));
+            PlaceNewPiece('h', 1, new Rook(Color.White, board));
+            PlaceNewPiece('a', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('b', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('c', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('d', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('e', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('f', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('g', 2, new Pawn(Color.White, board));
+            PlaceNewPiece('h', 2, new Pawn(Color.White, board));
+
+            PlaceNewPiece('a', 8, new Rook(Color.Black, board));
+            PlaceNewPiece('b', 8, new Knight(Color.Black, board));
+            PlaceNewPiece('c', 8, new Bishop(Color.Black, board));
+            PlaceNewPiece('d', 8, new Queen(Color.Black, board));
+            PlaceNewPiece('e', 8, new King(Color.Black, board));
+            PlaceNewPiece('f', 8, new Bishop(Color.Black, board));
+            PlaceNewPiece('g', 8, new Knight(Color.Black, board));
+            PlaceNewPiece('h', 8, new Rook(Color.Black, board));
+            PlaceNewPiece('a', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('b', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('c', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('d', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('e', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('f', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('g', 7, new Pawn(Color.Black, board));
+            PlaceNewPiece('h', 7, new Pawn(Color.Black, board));
 
 
 
-            PlaceNewPiece('b', 8, new Tower(Color.Black, board));
+
+
+
 
 
 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace chess
 {
-    internal class Tower : Piece
+    internal class Rook : Piece
     {
-        public Tower(Color color, Board board) : base(color, board)
+        public Rook(Color color, Board board) : base(color, board)
         {
         }
         public override bool[,] PossibleMovements()
@@ -77,7 +77,7 @@ namespace chess
         }
         public override string ToString()
         {
-            return "T";
+            return "R";
         }
     }
 }
