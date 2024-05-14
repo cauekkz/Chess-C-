@@ -9,8 +9,10 @@ namespace chess
 {
     internal class Pawn : Piece
     {
-        public Pawn(Color color, Board board) : base(color, board)
+        private ChessMatch Match;
+        public Pawn(Color color, Board board, ChessMatch match) : base(color, board)
         {
+            Match = match;
         }
         public override string ToString()
         {
@@ -61,6 +63,22 @@ namespace chess
                 {
                     mtx[pos.Row, pos.Col] = true;
                 }
+                //Special move
+                if (position.Row == 3)
+                {
+                    Position left = new Position(position.Row, position.Col - 1);
+                    if(board.ValidPosition(left) && ExistEnemy(left) && board.GetPiece(left) == Match.vulnerableEnPassant)
+                    {
+                        mtx[left.Row - 1, left.Col] = true;
+                    }
+
+                    Position right = new Position(position.Row, position.Col + 1);
+                    if (board.ValidPosition(right) && ExistEnemy(right) && board.GetPiece(right) == Match.vulnerableEnPassant)
+                    {
+                        mtx[right.Row - 1, right.Col] = true;
+                    }
+                }
+
             }
             else
             {
@@ -86,6 +104,23 @@ namespace chess
                 {
                     mtx[pos.Row, pos.Col] = true;
                 }
+                //special move
+
+                if (position.Row == 4)
+                {
+                    Position left = new Position(position.Row, position.Col - 1);
+                    if (board.ValidPosition(left) && ExistEnemy(left) && board.GetPiece(left) == Match.vulnerableEnPassant)
+                    {
+                        mtx[left.Row + 1, left.Col] = true;
+                    }
+
+                    Position right = new Position(position.Row, position.Col + 1);
+                    if (board.ValidPosition(right) && ExistEnemy(right) && board.GetPiece(right) == Match.vulnerableEnPassant)
+                    {
+                        mtx[right.Row + 1, right.Col] = true;
+                    }
+                }
+
 
 
             }
