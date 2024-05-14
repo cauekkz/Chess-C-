@@ -29,7 +29,7 @@ namespace Chess
                 Console.WriteLine("CHECKMATE!!");
                 Console.WriteLine("Winner: " + m.player);
             }
-                
+
             Console.WriteLine();
 
 
@@ -48,7 +48,7 @@ namespace Chess
         public static void PrintSet(HashSet<Piece> h)
         {
             Console.Write("[");
-            foreach( Piece x in h)
+            foreach (Piece x in h)
             {
                 Console.Write(x + " ");
             }
@@ -58,60 +58,106 @@ namespace Chess
         {
             for (int i = 0; i < board.Rows; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(8 - i + " ");
+                Console.ResetColor();
+
                 for (int j = 0; j < board.Cols; j++)
                 {
-
+                    if (i % 2 == 0)
+                    {
+                        if (j % 2 == 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                        }
+                    }
+                    else
+                    {
+                        if (j % 2 != 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                        }
+                    }
 
                     PrintPiece(board.GetPiece(i, j));
+                    Console.ResetColor();
 
                 }
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("  a b c d e f g h");
+            Console.ResetColor();
         }
-        public static void PrintBoard(Board board,bool[,] mtx)
+
+        public static void PrintBoard(Board board, bool[,] mtx)
         {
             ConsoleColor consoleAltColor = ConsoleColor.DarkGray;
             for (int i = 0; i < board.Rows; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(8 - i + " ");
+                Console.ResetColor();
+
                 for (int j = 0; j < board.Cols; j++)
                 {
 
-                    if (mtx[i, j])
+                    if (i % 2 == 0 && !mtx[i,j])
+                    {
+                        if (j % 2 == 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                        }
+                    }
+                    else if (i % 2 != 0 && !mtx[i, j])
+                    {
+                        if (j % 2 != 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                        }
+                    }
+                    else
                     {
                         Console.BackgroundColor = consoleAltColor;
                     }
-                   
+                    
                     PrintPiece(board.GetPiece(i, j));
                     Console.ResetColor();
 
                 }
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("  a b c d e f g h");
+            Console.ResetColor();
+
         }
         public static void PrintPiece(Piece piece)
         {
+
             if (piece == null)
             {
-                Console.Write("- ");
+
+                Console.Write("  ");
             }
             else
             {
+
                 if (piece.color == Color.White)
                 {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write(piece);
+
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.Write(piece);
-                    Console.ResetColor();
                 }
                 Console.Write(" ");
             }
+
+
         }
 
         public static ChessPosition ReadPosition()
