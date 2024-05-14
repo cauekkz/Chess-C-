@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -105,6 +106,20 @@ namespace chess
                 UnmakePlay(origin, destination, cptP);
                 throw new BoardException("You can't be in check");
             }
+            Piece p = board.GetPiece(destination);
+            //Special move promotion
+            if (p is Pawn)
+            {
+                if ((p.color == Color.White && destination.Row == 0) || (p.color == Color.Black && destination.Row == 7))
+                {
+                    p = board.RemovePiece(destination);
+                    pieces.Remove(p);
+                    Piece queen = new Queen(p.color, board);
+                    board.SetPiecePosition(queen, destination);
+                    pieces.Add(queen);
+
+                }
+            }
 
             if (Ischeck(Adversary(player)))
             {
@@ -124,7 +139,6 @@ namespace chess
                 turn++;
                 ChangePlayer();
             }
-            Piece p = board.GetPiece(destination);
             //#Special move
             if (p is Pawn && (destination.Row == origin.Row - 2 || destination.Row == origin.Row + 2))
             {
