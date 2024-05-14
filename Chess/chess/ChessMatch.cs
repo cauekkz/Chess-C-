@@ -74,6 +74,7 @@ namespace chess
             {
                 check = false;
             }
+
             if (CheckMate(Adversary(player)))
             {
                 Finished = true;
@@ -129,6 +130,7 @@ namespace chess
             foreach (Piece x in PiecesInGame(Adversary(c)))
             {
                 bool[,] mtx = x.PossibleMovements();
+
                 if (mtx[k.position.Row, k.position.Col])
                     return true;
 

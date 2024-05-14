@@ -38,9 +38,10 @@ namespace chess
                     break;
 
                 }
-                pos.SetValues(position.Row - 1, position.Col - 1);
+                pos.SetValues(pos.Row - 1, pos.Col - 1);
 
             }
+            Console.WriteLine("d");
 
             pos.SetValues(position.Row - 1, position.Col + 1);
 
@@ -52,7 +53,7 @@ namespace chess
                     break;
 
                 }
-                pos.SetValues(position.Row - 1, position.Col + 1);
+                pos.SetValues(pos.Row - 1, pos.Col + 1);
 
             }
 
@@ -66,7 +67,7 @@ namespace chess
                     break;
 
                 }
-                pos.SetValues(position.Row + 1, position.Col + 1);
+                pos.SetValues(pos.Row + 1, pos.Col + 1);
 
             }
 
@@ -80,7 +81,7 @@ namespace chess
                     break;
 
                 }
-                pos.SetValues(position.Row + 1, position.Col - 1);
+                pos.SetValues(pos.Row + 1, pos.Col - 1);
 
             }
 

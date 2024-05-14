@@ -20,7 +20,9 @@ while (!match.Finished)
 
         Console.Write("Destination: ");
         Position destination = Screen.ReadPosition().ToPosition();
+
         match.ValidDestinationPosition(origin,destination);
+        
 
         match.MakePlay(origin, destination);
         }
